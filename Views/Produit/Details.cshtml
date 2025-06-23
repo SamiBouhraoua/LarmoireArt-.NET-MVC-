@@ -1,0 +1,70 @@
+﻿@model LarmoireArt.Models.Produit
+
+@{
+    ViewData["Title"] = "Détails du Produit";
+}
+
+<h1 class="text-center text-uppercase text-warning mt-4">Détails du Produit</h1>
+<p class="text-center mb-4" style="color: #e63946; font-weight: bold;">
+    Découvrez tous les détails de ce produit. Vous pouvez également l'éditer ou revenir à la liste.
+</p>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <!-- Contenu aligné -->
+        <div class="col-md-8"
+             style="background-image: url('/images/navback.jpg');
+                    background-size: cover;
+                    background-position: center;
+                    border-radius: 10px;
+                    padding: 20px;">
+            <div class="card shadow-lg" style="background-color: rgba(255, 255, 255, 0.9);">
+                <div class="card-body p-4">
+                    <div class="row">
+                        <!-- Détails du produit -->
+                        <div class="col-md-6" style="background-image: url('/images/divback4.jpg');
+                            background-size: cover;
+                            background-position: center;
+                            border-radius: 10px;
+                            padding: 20px;">
+                            <dl class="row">
+                                <dt class="col-sm-4 text-dark font-weight-bold">Titre</dt>
+                                <dd class="col-sm-8">@Model.Titre</dd>
+
+                                <dt class="col-sm-4 text-dark font-weight-bold">Description</dt>
+                                <dd class="col-sm-8">@Model.Description</dd>
+
+                                <dt class="col-sm-4 text-dark font-weight-bold">Prix</dt>
+                                <dd class="col-sm-8">@Model.Prix.ToString("C")</dd>
+
+                                <dt class="col-sm-4 text-dark font-weight-bold">Stock</dt>
+                                <dd class="col-sm-8">@Model.Stock</dd>
+
+                                <dt class="col-sm-4 text-dark font-weight-bold">Categorie</dt>
+                                <dd class="col-sm-8">@Model.Categorie</dd>
+
+                                <a class="btn btn-success text-white" asp-Controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@Model.Id"><i class="bi bi-cart-plus"></i> Add  (Price @Model.Prix) </a>
+                            </dl>
+                        </div>
+                        <!-- Aperçu de l'image -->
+                        <div class="col-md-6 text-center d-flex flex-column justify-content-center border border-dark rounded-circle shadow-sm mb-3"
+                             style="max-width: 100%; max-height: 400px; background-image: url('/images/divback4.jpg'); margin-top: 40px;">
+                            <img src="@Model.ImageUrl" alt="@Model.Titre"
+                                 class="rounded-circle shadow-sm"
+                                 style="max-width: 100%; max-height: 100%;" />
+                        </div>
+                    </div>
+                    <!-- Boutons d'action -->
+                    <div class="text-center mt-4">
+                        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-light btn-lg text-white px-5" style="background-image: url('/images/navback.jpg');">
+                            Modifier
+                        </a>
+                        <a asp-action="Index" class="btn btn-outline-secondary btn-lg px-5 ml-3" style="background-image: url('/images/divback4.jpg');">
+                            Retour à la liste
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

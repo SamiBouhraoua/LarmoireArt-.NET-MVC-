@@ -1,0 +1,99 @@
+﻿@{
+    ViewData["Title"] = "Sommaire du panier d'achat";
+}
+
+<div class="row" style="background-image: url('/images/panier.jpg'); background-size: cover; background-position: center; background-attachment: fixed; padding: 50px 0;">
+    <div class="col-md-8 offset-2">
+        <div class="text-center mb-5">
+            <h1 class="display-4 text-white shadow p-3 mb-5 rounded">Votre panier</h1>
+        </div>
+
+        <div class="row">
+            @foreach (var item in Model.ShoppingCart.ShoppingCartItems)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card" style="background-color: rgba(255, 255, 255, 0.8); box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 12px; transition: transform 0.3s;">
+                        <img src="@item.Produit.ImageUrl" class="card-img-top" alt="@item.Produit.Titre" style="border-radius: 12px 12px 0 0;" />
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Produit.Titre</h5>
+                            <p class="card-text">Prix: @item.Produit.Prix.ToString("c")</p>
+                            <p class="card-text">Quantité: @item.Amount</p>
+                            <p class="card-text">Total: @((item.Amount * item.Produit.Prix).ToString("c"))</p>
+                            <div class="d-flex justify-content-between">
+                                <a class="btn btn-danger btn-sm" asp-controller="Orders" asp-action="RemoveItemFromShoppingCart"
+                                   asp-route-id="@item.Produit.Id">
+                                    <i class="bi bi-cart-dash"></i> Retirer
+                                </a>
+                                <a class="btn btn-success btn-sm" asp-controller="Orders" asp-action="AddItemToShoppingCart"
+                                   asp-route-id="@item.Produit.Id">
+                                    <i class="bi bi-cart-plus"></i> Ajouter
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <!-- Espace avant le bouton Paypal et les autres actions -->
+        <div class="mt-5">
+            <div class="text-center">
+                <div class="btn-group mb-4">
+                    <a class="btn btn-outline-success btn-lg" asp-controller="Produit" asp-action="Index">
+                        Ajouter d'autres produits
+                    </a>
+                </div>
+                <!-- Mise en avant du bouton PayPal -->
+                <div id="paypal-btn" class="py-4">
+                    <div class="alert alert-warning" role="alert">
+                        <strong>Le total de votre panier :</strong>
+                        <span style="font-size: 1.5rem; color: #f39c12;">@Model.ShoppingCartTotal.ToString("c")</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+
+    <script>
+        let _total = "@Model.ShoppingCartTotal".replace(",", ".");
+
+        paypal.Button.render({
+            env: 'sandbox',
+            client: {
+                sandbox: 'Ad1dn8sRmAfMHylNmCASJ5sZuEYzEeVDijK2IexFaACOB1-m7Crpl8iOJ_UwAhMOBkhu5W4u822e4Ukk'
+            },
+            locale: 'en_US',
+            style: {
+                size: 'small',
+                color: 'gold',
+                shape: 'pill'
+            },
+            commite: true,
+            payment: function(data, actions) {
+                return actions.payment.create({
+                    transactions: [{
+                        amount: {
+                            total: _total,
+                            currency: "USD"
+                        }
+                    }]
+                });
+            },
+            onAuthorize: function(data, actions) {
+                return actions.payment.execute().then(function() {
+                    var url = '@Url.Action("CompleteOrder", "Orders")';
+                    console.log(url);
+                    window.location.href = url;
+                });
+            },
+            onError: function(error) {
+                window.alert(error);
+            }
+        }, '#paypal-btn');
+    </script>
+}

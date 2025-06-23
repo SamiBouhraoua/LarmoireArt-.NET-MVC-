@@ -1,0 +1,127 @@
+﻿@model LarmoireArt.Models.Produit
+
+@{
+    ViewData["Title"] = "Modifier un Produit";
+}
+
+<h1 class="text-center text-uppercase text-warning mt-4">Modifier un Produit</h1>
+<p class="text-center mb-4" style="color: #e63946; font-weight: bold;">
+    Mettez à jour les informations du produit en entrant une URL valide pour l'image.
+</p>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8"
+             style="background-image: url('/images/navback.jpg');
+                    background-size: cover;
+                    background-position: center;
+                    border-radius: 10px;
+                    padding: 20px;">
+            <div class="card shadow-lg" style="background-color: rgba(255, 255, 255, 0.9);">
+                <div class="card-body p-4">
+                    <div class="row">
+                        <!-- Formulaire -->
+                        <div class="col-md-6" style="background-image: url('/images/divback4.jpg');
+                    background-size: cover;
+                    background-position: center;
+                    border-radius: 10px;
+                    padding: 20px;">
+                            <form asp-action="Edit">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <input type="hidden" asp-for="Id" />
+
+                                <!-- Champ pour l'URL de l'image -->
+                                <div class="form-group">
+                                    <label asp-for="ImageUrl" class="form-label font-weight-bold">URL de l'image</label>
+                                    <input asp-for="ImageUrl" type="url" class="form-control" id="ImageUrl" placeholder="https://exemple.com/image.jpg" required />
+                                    <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                                </div>
+
+                                <!-- Titre du produit -->
+                                <div class="form-group">
+                                    <label asp-for="Titre" class="form-label font-weight-bold">Titre</label>
+                                    <input asp-for="Titre" class="form-control" placeholder="Entrez le titre du produit" required />
+                                    <span asp-validation-for="Titre" class="text-danger"></span>
+                                </div>
+
+                                <!-- Prix -->
+                                <div class="form-group">
+                                    <label asp-for="Prix" class="form-label font-weight-bold">Prix</label>
+                                    <input asp-for="Prix" class="form-control" type="number" placeholder="Entrez le prix du produit" required />
+                                    <span asp-validation-for="Prix" class="text-danger"></span>
+                                </div>
+
+                                <!-- Stock -->
+                                <div class="form-group">
+                                    <label asp-for="Stock" class="form-label font-weight-bold">Stock</label>
+                                    <input asp-for="Stock" class="form-control" type="number" placeholder="Entrez le stock disponible" required />
+                                    <span asp-validation-for="Stock" class="text-danger"></span>
+                                </div>
+
+                                <!-- Description -->
+                                <div class="form-group">
+                                    <label asp-for="Description" class="form-label font-weight-bold">Description</label>
+                                    <textarea asp-for="Description" class="form-control" placeholder="Ajoutez une description du produit" rows="5" required></textarea>
+                                    <span asp-validation-for="Description" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Categorie" class="form-label font-weight-bold">Catégorie</label>
+                                    <select asp-for="Categorie" class="form-control">
+                                        <option value="" required>Sélectionner une catégorie</option>
+                                        @foreach (var category in ViewBag.ListeCategories as List<string>)
+                                        {
+                                            <option value="@category">@category</option>
+                                        }
+                                    </select>
+                                    <span asp-validation-for="Categorie" class="text-danger"></span>
+                                </div>
+
+                                <!-- Bouton de soumission -->
+                                <div class="form-group text-center mt-4">
+                                    <input type="submit" value="Enregistrer" class="btn btn-primary btn-lg px-5" style="background-image: url('/images/navback.jpg')" />
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Aperçu de l'image -->
+                        <div class="col-md-6 text-center d-flex flex-column justify-content-center border border-dark rounded-circle shadow-sm mb-3"
+                             style="max-width: 100%; max-height: 400px;background-image: url('/images/divback4.jpg');margin-top:80px">
+                            <img id="ProfileVisueliser" class="rounded-circle shadow-sm"
+                                 src="@Model.ImageUrl"
+                                 style="max-width: 100%; max-height: 100%;"
+                                 alt="Aperçu de l'image" />
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lien pour revenir -->
+            <div class="text-center mt-3">
+                <a asp-action="Index" class="btn btn-outline-secondary" style="background-image: url('/images/divback4.jpg')">Retour à la liste</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function(){
+
+            var output = document.getElementById("ImageUrlPreview");
+            output.src = $("#ImageUrl").val();
+
+
+        })
+        $("#ImageUrl").on("change", function () {
+
+            var output = document.getElementById("ImageUrlPreview");
+            output.src = $(this).val();
+
+
+        })
+    </script>
+}

@@ -1,0 +1,101 @@
+html {
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+body {
+    background-image: url('/images/atelier.jpg');
+    background-size: cover; /* L'image couvrira tout l'écran */
+    background-position: center; /* Centre l'image */
+    background-repeat: no-repeat; /* Évite la répétition de l'image */
+    background-attachment: fixed; /* Permet un effet de parallaxe */
+    margin: 0; /* Supprime les marges */
+    padding: 0; /* Supprime les bordures internes */
+    display: flex;
+    flex-direction: column; /* Organise le contenu en colonne */
+    min-height: 50vh; /* Assure que le corps couvre toute la hauteur */
+}
+
+/* Navbar background */
+nav.navbar {
+    background-image: url('/images/divback5.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+    nav.navbar a.nav-link {
+        color: white !important;
+        transition: color 0.3s;
+    }
+
+        nav.navbar a.nav-link:hover {
+            color: #ffcc00 !important; /* Highlight color */
+        }
+
+    nav.navbar .navbar-brand {
+        font-weight: bold;
+        color: #FFD700 !important;
+    }
+
+/* Main content takes all remaining space */
+main {
+    flex: 1; /* Permet à la section principale d'occuper tout l'espace */
+}
+
+/* Footer background */
+footer {
+    background-image: url('/images/divback5.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 5px 0;
+    text-align: center;
+    width: 100%;
+}
+
+    footer a {
+        color: #ffcc00 !important;
+    }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+/* Carte des produits */
+.card {
+    margin-bottom: 30px; /* Espace entre les cartes de produits */
+    border: none;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 300px; /* Ajuste la hauteur des images à une taille uniforme */
+    object-fit: cover; /* Maintient la qualité de l'image sans la déformer */
+}
+
+.card-body {
+    background-color: rgba(255, 255, 255, 0.8); /* Fond blanc avec une opacité pour contraster avec l'image */
+}
+
+/* Card text */
+.card-text {
+    white-space: normal;
+    line-height: 1.6;
+    word-wrap: break-word;
+}
+
+.row {
+    margin-bottom: 20px; /* Espacement entre les éléments de la ligne */
+}
+
+.container {
+    margin-bottom: 40px; /* Espacement supplémentaire sous la section */
+}

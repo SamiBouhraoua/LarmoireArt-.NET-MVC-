@@ -1,0 +1,81 @@
+﻿@{
+    ViewData["Title"] = "Accueil";
+}
+
+<div class="jumbotron text-center"
+     style="background-color: #fff;
+            background-image: url('images/divback4.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 50px;
+            margin-top:50px;">
+    <h1 class="display-4 font-weight-bold">Bienvenue dans l'atelier de M. Larmoire</h1>
+    <p class="lead mt-3 mb-4">Découvrez notre savoir-faire en menuiserie et ébénisterie, avec des meubles et des éléments décoratifs fabriqués sur mesure.</p>
+    <a class="btn btn-primary btn-lg" style="background-image: url('images/navback.jpg')" href="@Url.Action("Index", "Produit")" role="button">
+        <i class="fas fa-cogs"></i> Voir nos Créations
+    </a>
+</div>
+
+<div class="container mt-5">
+    <!-- Section "À Propos" -->
+    <div class="row mb-5 d-flex justify-content-between" style="margin-top: 100px;">
+        <div class="col-md-8" style="background-color: #fff;
+            background-image: url('images/divback4.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 50px;">
+            <h2>À Propos de M. Larmoire</h2>
+            <p class="text-muted">M. Larmoire est un artisan passionné par la création de meubles sur mesure et d'éléments décoratifs en bois massif. Il met son expertise au service de ses clients pour rénover et fabriquer des pièces uniques adaptées à leurs besoins.</p>
+            <p><strong>La tradition du travail bien fait, sur mesure et personnalisé.</strong></p>
+            <p>Dans son atelier en Normandie, il transforme le bois en œuvres d'art, qu'il s'agisse de meubles classiques ou de créations plus modernes. Chaque pièce est réalisée avec soin, respectant des standards de qualité et d'esthétique.</p>
+            <p>Nous nous engageons à offrir des créations personnalisées qui apporteront charme et élégance à votre intérieur. Notre priorité est la satisfaction du client, et nous offrons des conseils personnalisés pour chaque projet.</p>
+        </div>
+        <div class="col-md-4">
+            <img src="/images/logo.jpg" alt="M. Larmoire - Artisan menuisier" class="img-fluid rounded shadow-sm" style="height:500px">
+        </div>
+    </div>
+
+    <!-- Section "Nos Réalisations" -->
+    <div class="row text-center">
+        <h2 class="col-12 mb-4" style="background-color: #fff;
+        background-image: url('images/divback4.jpg');
+        background-size: cover;
+        background-position: center;
+        padding: 20px;">
+            Nos Réalisations récentes
+        </h2>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <img src="images/table1.jpg" class="card-img-top" alt="Table Massif 1">
+                <div class="card-body" style="background-image: url('images/divback4.jpg')">
+                    <h5 class="card-title">Table en Chêne Massif</h5>
+                    <p class="card-text text-muted">Une table en chêne massif, idéale pour les repas en famille, avec une finition soignée et un design intemporel.</p>
+                    <a href="@Url.Action("Index", "Produit")" class="btn btn-primary" style="background-image: url('images/navback.jpg')">Voir Plus</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <img src="images/table2.jpg" class="card-img-top" alt="Table Massif 2">
+                <div class="card-body" style="background-image: url('images/divback4.jpg')">
+                    <h5 class="card-title">Table en Bois de Noyer</h5>
+                    <p class="card-text text-muted">Cette table en noyer massif, conçue sur mesure, apportera chaleur et élégance et beauté à votre salle à manger.</p>
+                    <a href="@Url.Action("Index", "Produit")" class="btn btn-primary" style="background-image: url('images/navback.jpg')">Voir Plus</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <img src="images/table3.jpg" class="card-img-top" alt="Table Massif 3">
+                <div class="card-body" style="background-image: url('images/divback4.jpg')">
+                    <h5 class="card-title">Table Rectangulaire Moderne</h5>
+                    <p class="card-text text-muted">Une table rectangulaire au design moderne, avec des lignes épurées et une finition haut de gamme pour un intérieur raffiné.</p>
+                    <a href="@Url.Action("Index", "Produit")" class="btn btn-primary" style="background-image: url('images/navback.jpg')">Voir Plus</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
